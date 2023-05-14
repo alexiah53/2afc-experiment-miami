@@ -1422,8 +1422,8 @@ if (exp.response == null) {
   var check_race = document.querySelectorAll('[name="race"]:checked');
 
 	  if  (
-		  // !$("#heritage_country").val() |
-      // !$("#english_acquisition_age").val() |
+		  !$("#heritage_country").val() |
+      !$("#english_acquisition_age").val() |
 		  !$("#current_region").val() |
 		  !$("#first_language").val() |
 		  !$("#parent_languages").val() |
@@ -1455,15 +1455,15 @@ if (exp.response == null) {
         education: $("#education").val(),
         comments: $("#comments").val(),
 		race: race_list,
-		// heritage_country: $("#heritage_country").val(),
+		heritage_country: $("#heritage_country").val(),
 		current_region: $("#current_region").val(),
 		other_regions: $("#other_regions").val(),
 		first_language: $("#first_language").val(),
 		other_languages: $("#other_languages").val(),
-		// english_acquisition_age: $("#english_acquisition_age").val(),
+		english_acquisition_age: $("#english_acquisition_age").val(),
 		parent_languages: $("#parent_languages").val(),
 		exposure: $("#exposure").val(),
-		// email: $("#email").val()
+		email: $("#email").val()
       };
 
       exp.go();
