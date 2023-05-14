@@ -1,3 +1,40 @@
+function addinput() {
+  if ($('input[name="ethnicity"]:checked').val() == "hispanic") {
+    document.getElementById("hispanic_options").innerHTML = '<p><div id = "heritage_country_div">*Heritage Countries (ex. Cuba): <input type="text" id="heritage_country"></p></div><p><div id = "english_acquisition_age_div">*Age You Learned English: <input type="text" id="english_acquisition_age"></p>  </div>';
+    document.getElementById("non_hispanic_options").innerHTML = '';
+  // document.getElementById("heritage_country_div").show();
+  // document.getElementById("english_acquisition_age_div").show();
+  
+
+  }
+
+  if ($('input[name="ethnicity"]:checked').val() == "not_hispanic") {
+  document.getElementById("non_hispanic_options").innerHTML = '<p><div id = "exposure_div">*Exposure to Hispanic/ Latina/o Population: <select id="exposure"><option value=""></option><option value="Daily">On a daily basis</option><option value="Weekly">On a weekly basis</option><option value="Monthly">On a monthly basis</option><option value="Yearly">On a yearly basis</option><option value="Prefer not to say">Prefer not to say</option></select></p>  </div>';
+  document.getElementById("hispanic_options").innerHTML = '';
+  // document.getElementById("exposure_div").show();
+
+
+  }
+}
+
+var heritage_country_value = null;
+var english_acquisition_age_value = null;
+var exposure_value = null;
+
+function getconditionalinputs(){
+  if ($('input[name="ethnicity"]:checked').val() == "hispanic") {
+    heritage_country_value = $("#heritage_country").val();
+    english_acquisition_age_value = $("#english_acquisition_age").val();
+    exposure_value = "NA";
+  }
+  if ($('input[name="ethnicity"]:checked').val() == "not_hispanic") {
+    exposure_value = $("#exposure").val();
+    heritage_country_value = "NA";
+    english_acquisition_age_value = "NA";
+  }
+}
+
+
 // set up experiment logic for each slide
 function make_slides(f) {
   var slides = {};
@@ -1419,16 +1456,26 @@ if (exp.response == null) {
     name: "subj_info",
     submit: function(e) {
 
+// document.getElementById("heritage_country_div").hide();
+// document.getElementById("english_acquisition_age_div").hide();
+// document.getElementById("exposure_div").hide();
+
+
+
+
   var check_race = document.querySelectorAll('[name="race"]:checked');
 
 	  if  (
-		  !$("#heritage_country").val() |
-      !$("#english_acquisition_age").val() |
+		  // !$("#heritage_country").val() |
+       !heritage_country_value |
+      // !$("#english_acquisition_age").val() |
+       !english_acquisition_age_value |
 		  !$("#current_region").val() |
 		  !$("#first_language").val() |
 		  !$("#parent_languages").val() |
       check_race.length < 1 |
-	  	  !$("#exposure").val()) {
+      !exposure_value) {
+	  	  // !$("#exposure").val()) {
 
 	  	$(".err").show();
 	}
@@ -1449,22 +1496,29 @@ if (exp.response == null) {
 		console.log("list:", race_list);
 
       exp.subj_data = {
-        // asses: $('input[name="assess"]:checked').val(),
         age: $("#age").val(),
         gender: $("#gender").val(),
         education: $("#education").val(),
         comments: $("#comments").val(),
+         ethnicity: $('input[name="ethnicity"]:checked').val(),
+// heritage_country: $("#heritage_country").val(),
+         heritage_country: heritage_country_value,
+         english_acquisition_age: english_acquisition_age_value,
+    // english_acquisition_age: $("#english_acquisition_age").val(),
+
 		race: race_list,
-		heritage_country: $("#heritage_country").val(),
 		current_region: $("#current_region").val(),
 		other_regions: $("#other_regions").val(),
 		first_language: $("#first_language").val(),
 		other_languages: $("#other_languages").val(),
-		english_acquisition_age: $("#english_acquisition_age").val(),
 		parent_languages: $("#parent_languages").val(),
-		exposure: $("#exposure").val(),
+
+		// exposure: $("#exposure").val(),
+    exposure: exposure_value,
+
 		email: $("#email").val()
       };
+
 
       exp.go();
 

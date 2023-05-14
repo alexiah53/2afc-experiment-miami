@@ -42,7 +42,7 @@
     <!-- initial slide -->
     <div class="slide" id="i0">
 		  <p class="center">
-		  	  <br>  <strong> Please only complete this task if you're from Miami and Cuba is your heritage country. </strong><br>
+		  	  <br>  <strong> Please only complete this task if you're from Miami. </strong><br>
 	          <br>
 			  Please share this link with friends or family that qualify! But do not take this study more than once. 
 			  <br><br>
@@ -854,7 +854,21 @@
           </select>
         </p>
 		
-		<p> *Race/Ethnicity: <br>
+		<p> *Ethnicity
+        </p><label>
+			<input type="radio" name="ethnicity" value="hispanic" onclick="addinput();">Hispanic/Latino</label> <label>
+				<input type="radio" name="ethnicity" value="not_hispanic" onclick="addinput();">Not Hispanic/Latino</label>  
+				<div id="hispanic_options"></div>
+<!-- 
+    <p><div id = "heritage_country_div">
+          *Heritage Countries (ex. Cuba): <input type="text" id="heritage_country">
+        </p></div>
+  <p><div id = "english_acquisition_age_div">
+      *Age You Learned English: <input type="text" id="english_acquisition_age">
+    </p>	</div> -->
+
+
+		<p> *Race: <br>
 		<div class="race">    
 		    <span>
 		    <input id="White or Caucasian" name = "race" type="checkbox" value="White or Caucasian"/>
@@ -866,11 +880,11 @@
 		    <label for="race">Black or African American</label>
 		    </span>    
 			<br>
-		    <span>
+<!-- 		    <span>
 		    <input id="Hispanic or Latinx" name = "race" type="checkbox" value="Hispanic or Latinx"/>
 		    <label for="race">Hispanic or Latina/o</label>
-		    </span>
-			<br>
+		    </span> -->
+			<!-- <br> -->
 		    <span>
 		    <input id="Native American or Alaskan Native" name = "race" type="checkbox" value="Native American or Alaskan Native"/>
 		    <label for="race">Native American or Alaskan Native</label>
@@ -883,14 +897,11 @@
 			<br>
 		    <span>
 		    <input id="Prefer not to say" name = "race" type="checkbox" value="Prefer not to say"/>
-		    <label for="race">Prefer not to say</label>
+		    <label for="race">Other or Prefer not to say</label>
 		    </span>
 		</div>
 		</p>
 		
-        <p>
-          *Heritage Countries (ex. Cuba, Mexico): <input type="text" id="heritage_country">
-        </p>
         <p>
           *Current City, State: <input type="text" id="current_region">
         </p>
@@ -904,12 +915,11 @@
       Other Language(s) Spoken: <input type="text" id="other_languages">
     </p>	
     <p>
-      *Age You Learned English: <input type="text" id="english_acquisition_age">
-    </p>	
-    <p>
       *Parents' Native Language(s): <input type="text" id="parent_languages">
     </p>
-    <p>
+
+<div id = "non_hispanic_options"></div>
+    <!-- <p><div id = "exposure_div">
       *Exposure to Hispanic/ Latina/o Population: <select id="exposure">
         <option value="">
         </option>
@@ -929,7 +939,7 @@
           Prefer not to say
         </option>
       </select>
-    </p>	
+    </p>	</div> -->
 	
     <p>
       Email (to receive $5 Amazon Gift Card): <input type="text" id="email">
@@ -938,7 +948,7 @@
           Please leave any comments you have about this experiment here:
         </p>
         <textarea id="comments" rows="3" cols="50"></textarea><br>
-        <button onclick="_s.submit()">Submit</button>
+        <button onclick="getconditionalinputs();_s.submit();">Submit</button>
 		
 	      <div class="err">
 	        <p>
