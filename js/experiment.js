@@ -1455,27 +1455,23 @@ if (exp.response == null) {
   slides.subj_info = slide({
     name: "subj_info",
     submit: function(e) {
-
 // document.getElementById("heritage_country_div").hide();
 // document.getElementById("english_acquisition_age_div").hide();
 // document.getElementById("exposure_div").hide();
 
 
-
-
   var check_race = document.querySelectorAll('[name="race"]:checked');
 
 	  if  (
-		  // !$("#heritage_country").val() |
        !heritage_country_value |
-      // !$("#english_acquisition_age").val() |
        !english_acquisition_age_value |
 		  !$("#current_region").val() |
 		  !$("#first_language").val() |
 		  !$("#parent_languages").val() |
       check_race.length < 1 |
+      !$("#miami").val() |
+      !$("#referral").val() |
       !exposure_value) {
-	  	  // !$("#exposure").val()) {
 
 	  	$(".err").show();
 	}
@@ -1512,7 +1508,8 @@ if (exp.response == null) {
 		first_language: $("#first_language").val(),
 		other_languages: $("#other_languages").val(),
 		parent_languages: $("#parent_languages").val(),
-
+    years_in_miami : $("#miami").val(),
+    link_source: $("#referral").val(),
 		// exposure: $("#exposure").val(),
     exposure: exposure_value,
 
